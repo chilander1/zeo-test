@@ -1,0 +1,28 @@
+.trust-container {
+  border-top: 1px solid #f1f7fa;
+  margin-top: 40px;
+  .trust-block {
+    padding: 28px 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    img {
+      filter: grayscale(100%);
+      opacity: 0.4;
+      transition: 0.6s;
+      cursor: pointer;
+      &:hover{
+
+        filter: grayscale(0%);
+        opacity: 1;
+      }
+      @media (max-width: 640px) {
+        padding: 5px;
+      }
+    }
+    @media (max-width: 769px) {
+      padding: 30px;
+    }
+  }
+}

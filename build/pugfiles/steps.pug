@@ -1,0 +1,32 @@
+include ./mixins
+section.container
+    .steps-container
+        .steps-block
+            .step
+                .step-icon-block
+                    img(class="step-icon" src="img/step1.png" alt="")
+                .step-text
+                    .step-text-title STEP 1:
+                    | Click
+                    a(href="#") “Download now”
+            .step
+                .step-icon-block
+                    img(class="step-icon" src="img/step2.png" alt="")
+                .step-text
+                    .step-text-title STEP 2:
+                    | Click
+                    b "Run"
+                    | or
+                    b "Save"
+            .step
+                .step-icon-block
+                    img(class="step-icon" src="img/step3.png" alt="")
+                .step-text
+                    .step-text-title STEP 3:
+                    | Scan your Mac
+            +download()
+        .images-mac-block
+            img(class="image-mac" src="img/mac.png" alt="")
+            .download-approved
+                img(class="image-mac" src="img/dowloads.png" alt="")
+                img(class="image-mac" src="img/approved.png" alt="")

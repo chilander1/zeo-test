@@ -1,0 +1,71 @@
+.header {
+  height: $header-h;
+  line-height: $header-h;
+  background: $light-blue;
+  border-bottom: 1px solid $light-blue-bord;
+  position: relative;
+  box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.3);
+  clear: both;
+  a {
+    display: block;
+    float: left;
+    vertical-align: middle;
+    margin-right: 118px;
+    transition: 0.6s;
+    img {
+      vertical-align: middle;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+    @media (max-width: 640px) {
+      margin-right: 20px;
+    }
+    @media (max-width: 480px) {
+    float: none;
+      text-align: center;
+    }
+  }
+  h1 {
+    display: inline-block;
+    line-height: $header-h + 5;
+    span {
+      border: 1px solid $h1-border;
+      border-radius: 5px;
+      padding: 0 5px;
+      margin-right: 4px;
+    }
+    @media (max-width: 640px) {
+      float: right;
+      padding-right: 20px;
+      font-size: em(28);
+    }
+    @media (max-width: 480px) {
+      float: none;
+      text-align: center;
+      display: block;
+      padding: 0;
+    }
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: -1em;
+    left: 26.5%;
+    box-sizing: border-box;
+    border: 0.5em solid;
+    border-color: transparent transparent $light-blue $light-blue;
+    transform-origin: 0 0;
+    transform: rotate(-45deg);
+    box-shadow: -4px 4px 7px -1px rgba(0, 0, 0, 0.3);
+  }
+  @media (max-width: 480px) {
+   height: auto;
+    line-height: 50px;
+  }
+}
+
+
+

@@ -1,0 +1,179 @@
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: otf woff2 woff ttf svg) {
+  $src: null;
+  $extmods: (
+          eot: "?",
+  );
+
+  $formats: (
+          otf: "opentype",
+          ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote("fonts/" + $path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+$with: 80px;
+@mixin bg-sprite($with, $x) {
+  background: url(../img/icon__sprire_big.png) $x 50%;
+  width: $with;
+  height: 94px;
+}
+.tool--t1{
+  @include bg-sprite(79px, 0);
+};
+.tool--t2{
+  @include bg-sprite(79px, 251px);
+};
+.tool--t3{
+  @include bg-sprite(90px, -264px);
+};
+.tool--t4{
+  @include bg-sprite(80px, 173px);
+};
+.tool--t5{
+  @include bg-sprite(79px, 80px);
+};
+
+.tool--t6{
+  @include bg-sprite(94px, -79px);
+};
+
+
+
+.tool--t7{
+  @include bg-sprite(87px, -1091px);
+};
+.tool--t8{
+  @include bg-sprite(90px, -360px);
+};
+.tool--t9{
+  @include bg-sprite(81px, 337px);
+};
+.tool--t10{
+  @include bg-sprite(100px, -990px);
+};
+.tool--t11{
+  @include bg-sprite(90px, -889px);
+};
+.tool--t12{
+  @include bg-sprite(87px, -536px);
+};
+.tool--t13{
+  @include bg-sprite(87px, -449px);
+};
+.tool--t14{
+  @include bg-sprite(87px, -793px);
+};
+.tool--t15{
+  @include bg-sprite(100px, -695px);
+};
+.tool--t16{
+  @include bg-sprite(83px, -616px);
+};
+.tool--t17{
+  @include bg-sprite(94px, -172px);
+};
+
+/****************************
+      Mixin Hexagon
+*****************************/
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@mixin hex-grid(
+  $columns,
+  $gutter: 0,
+  $weight: even
+) {
+  float: left;
+
+  @if $columns > 1 {
+    $gutter-count: $columns - 1;
+
+    $width: percentage((100 - (strip-units($gutter) * $gutter-count)) / $columns / 100);
+    width: $width;
+    margin-right: $gutter;
+    $n: ($columns * 2) - 1;
+    $push: ($width+$gutter)/2;
+
+    $first-short: 1;
+    @if $weight == even {
+      $first-short: $columns + 1;
+    }
+    &:nth-child(#{$n}n+#{$first-short}) {
+      margin-left: $push;
+    }
+
+    $last-short: $columns - 1;
+    @if $weight == even {
+      $last-short: $n;
+    }
+    &:nth-child(#{$n}n+#{$last-short}) {
+      margin-right: $push;
+    }
+
+    $last-long: $n;
+    @if $weight == even {
+      $last-long: $columns;
+    }
+    &:nth-child(#{$n}n+#{$last-long}) {
+      margin-right: 0;
+    }
+
+    $pull: ($width * -0.288675135) + $gutter;
+
+    $first-even: $columns;
+    @if $weight == even {
+      $first-even: $columns + 1;
+    }
+    $all-even: join((), (), comma);
+    @for $i from $first-even through $n {
+      $all-even: append($all-even, unquote("&:nth-child(#{$n}n+#{$i})"));
+    }
+    #{$all-even} {
+      margin-top: $pull;
+      margin-bottom: $pull;
+    }
+
+  } @else if $columns == 1 {
+
+    $width: percentage(2/3) - ($gutter/2);
+    width: $width;
+
+    $even-push: right;
+    $odd-push: left;
+    @if $weight == even {
+      $even-push: left;
+      $odd-push: right;
+    }
+    $push: 100% - $width;
+
+    $pull: ($width * -0.288675135) + $gutter;
+    &:nth-child(even) {
+      margin-#{$even-push}: $push;
+
+      margin-top: $pull;
+      margin-bottom: $pull;
+    }
+
+    &:nth-child(even) {
+      margin-#{$odd-push}: $push;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
